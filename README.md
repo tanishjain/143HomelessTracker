@@ -1,7 +1,7 @@
 # 143HomelessTracker
 
-	This project was meant to find all data that may be used as a proxy for measuring homeless populations in San
-	Francisco. 
+	This project was meant to find all data that may be used as a proxy for measuring homeless 
+	populations in San Francisco. 
 
 Then using this data we hoped to answer several questions: 
 - Do people experiencing homelessness congregate near public restrooms, and are there enough public restrooms available to serve San Francisco’s growing homeless population?
