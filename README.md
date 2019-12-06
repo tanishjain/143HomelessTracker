@@ -18,6 +18,14 @@ These sets were cleaned and sorted using the “Data_cleaner()” function.
 	Once we had these sets, we extracted their latitude and longitude, and from those added a column containing their zipcodes. 
 This was done using the “add_ll()” function
 
-	From there we set about creating bar graphs, histograms, and heatmaps that would best convey the data that we found.
+	From there we set about creating bar graphs, histograms, and heatmaps that would best convey the data that we found. After experimenting with multiple methods we decided that we should first establish the legitimacy of our variables by creating a correlation matrix.
+This was done using ---------------------------------------
+	
+	We then wanted to show the relationship between human waste, and public restrooms and decided that a bar plot and heat map would visualize our data well.
+this was done using---------------------------------------
+
+	To show correlations (or lack therof) it was decided that side by side bar plots would be best.
 This was done using the "bar_plot()" to create single and double bar graphs.
-We also used the function and the ###############etc
+
+	Finally we wanted to show the movement of homeless populations over time, and realised that a heatmap would be excellent for this. We then compiled images by year, and by monthly average into gifs to allow the data to be easily understood.
+This was done using ----------------------------------------
