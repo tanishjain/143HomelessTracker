@@ -42,7 +42,17 @@ def add_ll(project_data):
     return project_data
 
 def create_corr_mat(data, annot_sz=30):
+    """
+    Plot correlation matrix for given dataset. Returns correlation matrix.
     
+    :param: data
+    :type: pd.DataFrame
+    
+    :param: annot_sz
+    :type: int
+    
+    :return: pd.DataFrame
+    """
     assert isinstance(data, pd.DataFrame)
     assert isinstance(annot_sz, int)      
     corr = data.corr()
@@ -58,11 +68,16 @@ def create_corr_mat(data, annot_sz=30):
     
     return corr
 
-def autolabel(rects):
-     #“”"Attach a text label above each bar in *rects*, displaying its height.“”"
-     for rect in rects:
-         height = rect.get_height()
-         ax.annotate('{}'.format(height),
+def autolabel(rects):    
+    """
+    Attach a text label above each bar in rects, displaying its height.
+    
+    :param: rects
+    :type: matplotlib.container.BarContainer
+    """
+    for rect in rects:
+        height = rect.get_height()
+        ax.annotate('{}'.format(height),
                      xy=(rect.get_x() + rect.get_width() / 2, height),
                      xytext=(0, 3),  # 3 points vertical offset
                      textcoords='offset points',
@@ -78,7 +93,10 @@ project_data = pd.read_csv('Full Dataset.csv')
 toilet_data = pd.read_csv('public_restrooms_sf.csv')
 crime_data = pd.read_csv('Police Dataset2.csv')
 
-#%% Correlation between Homeless Reports and Toilets by Zip Code
+#%% 
+'''
+Correlation between Homeless Reports and Toilets by Zip Code
+'''
 homeless_reports = project_data.groupby('Zip')['Latitude'].count().to_frame()
 toilet_data = toilet_data.groupby('zip')['location'].count().to_frame()
 
@@ -96,7 +114,10 @@ homeless_reports.insert(len(homeless_reports.columns), "Toilet Count", num_toile
 #Create correlation matrix for each variable (occurence by zip code)
 create_corr_mat(homeless_reports)
 
-#%% Correlation between Human Waste and general Homeless Reports
+#%% 
+'''
+Correlation between Human Waste and general Homeless Reports
+'''
 other_reports = project_data[project_data['Description'] != 'Human or Animal Waste']
 poop_reports = project_data[project_data['Description'] == 'Human or Animal Waste']
 
@@ -110,7 +131,9 @@ all_reports = all_reports.rename(columns={'Date':'Homeless Reports'})
 create_corr_mat(all_reports)
 
 #%%
-
+'''
+Correlation between various variables corresponding to homeless populations
+'''
 #Split the dataset by the category of report (variable) (occurence by zip code)
 cat0 = project_data[project_data['Description'] == 'Human or Animal Waste'].groupby('Zip').count()
 cat1 = project_data[project_data['Description'] == 'CIVIL SIDEWALKS, CITATION'].groupby('Zip').count()
@@ -138,7 +161,9 @@ all_reports = cat8[['Waste Reports','Civil Sidewalks Citation','Encampment Repor
 create_corr_mat(all_reports)
 
 #%%
-
+'''
+Correlation between Non-Homeless Crime Reports and Homeless Reports
+'''
 crime_reports = crime_data.groupby('Zip').count()
 homeless_reports = project_data.groupby('Zip').count()
 crime_reports = crime_reports.rename(columns={'Category':'Crime Reports'})
@@ -149,10 +174,8 @@ crime_reports = crime_reports[['Homeless Reports','Crime Reports']]
 create_corr_mat(crime_reports)
 
 #%%
-# https://sfgov.org/scorecards/safety-net/homeless-population
-
 '''
-
+Plot bar chart showing official homeless population count in SFO
 Data from https://sfgov.org/scorecards/safety-net/homeless-population
 '''
 
@@ -164,7 +187,7 @@ x = np.arange(len(years))   #labels for x axis
 width = 0.8                 #width of the bars
 fig, ax = plt.subplots(facecolor='black', figsize=(5,10))
 rects1 = ax.bar(x - width / 2, population, width, color='#37C9EF', alpha=.8)
-
+print(type(rects1))
 ax.set_ylabel('Homeless Count', size=30)
 ax.set_xlabel('Years', size=30)
 ax.set_xticks(x)
