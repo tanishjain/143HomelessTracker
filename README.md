@@ -1,4 +1,4 @@
-# 143HomelessTracker
+# Studying the dynamics of San Francisco's Homeless Population
 
 	This project was meant to find all data that may be used as a proxy for measuring homeless 
 	populations in San Francisco. 
@@ -23,7 +23,7 @@ This was done using the “add_ll()” function
 This was done using the "create_corr_mat(data)" function. This function takes as the input the relevant dataset (in our case, sorted by zip codes; i.e., the rows correspond to various SFO zip codes and columns correspond to various variables), and plots the correlation matrix between the dataset variables. Note that the input dataset must be formatted in a very specific way, with each column representing different variables.
 	
 	We then wanted to show the relationship between human waste, and public restrooms and decided that a bar plot and heat map would visualize our data well.
-this was done using---------------------------------------
+This was done using---------------------------------------
 
 	To show correlations (or lack therof) it was decided that side by side bar plots would be best.
 This was done using the "bar_plot()" to create single and double bar graphs.
