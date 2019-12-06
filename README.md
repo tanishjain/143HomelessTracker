@@ -20,7 +20,7 @@ These sets were cleaned and sorted using the “Data_cleaner()” function.
 This was done using the “add_ll()” function
 
 	From there we set about creating bar graphs, histograms, and heatmaps that would best convey the data that we found. After experimenting with multiple methods we decided that we should first establish the legitimacy of our variables by creating a correlation matrix.
-This was done using ---------------------------------------
+This was done using the "create_corr_mat(data)" function. This function takes as the input the relevant dataset (in our case, sorted by zip codes; i.e., the rows correspond to various SFO zip codes and columns correspond to various variables), and plots the correlation matrix between the dataset variables. Note that the input dataset must be formatted in a very specific way, with each column representing different variables.
 	
 	We then wanted to show the relationship between human waste, and public restrooms and decided that a bar plot and heat map would visualize our data well.
 this was done using---------------------------------------
