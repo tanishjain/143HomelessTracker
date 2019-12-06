@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 
 def add_ll(fname):
     '''
-    This function add Longitude and Latitude columns to the file from the Location column
+    This function adds Longitude, Latitude, and zipcode columns to the file from the Location column
     :param fname: file name
     :return: geocoded file
     '''
@@ -29,7 +29,7 @@ def add_ll(fname):
     print("Timing has begun")
     for location in location_list:
         count+=1
-        if count == tracker:
+        if count == tracker:    # let us know the progress of this time-consuming process
             count = 0
             print('%d%s Finished'%(mult, '%'))
             end = time.time()
@@ -42,7 +42,7 @@ def add_ll(fname):
             zp = search.by_coordinates(float(la), float(lo), returns=1)[0].zipcode
             # print(zp)
         else:
-            zp = '' # get rid of values outside of our range
+            zp = '' # values outside of our range will be empty cells for easy removal
 
         longitude_list.append(lo)
         latitude_list.append(la)
@@ -104,7 +104,7 @@ def homeless_data_cleaner(fname, cols, data, keep_other_data = False):
     df = df[cols]
 
 
-    if keep_other_data == True: # if we want to keep the discarded data
+    if keep_other_data == True: # if we want to keep the "non-homeless" data
         data_not_homeless = []
         values = list(df[cols[1]].unique())
         values.append(list(df[cols[2]].unique()))
@@ -259,12 +259,11 @@ homeless_police_reports = ['Geocoded_Cleaned_Police_Department_Incident_Reports_
 
 
 
-def scatter_plot(fnames, cols):
+def bar_plot(fnames, cols):
     '''
     This function takes in two variables from two files and plots them against each other
-    for instance, if you have homeless and non-homeless data, and the columns location and date
-    it will plot date and location on the x and y axis, with homeless in blue, and the non-homeless data in
-    white. The plots will also be sized according to the number of points in that spot
+    for instance, if you have homeless and non-homeless data, and the columns 'location' or 'date'
+    it will plot bar graphs the data from the separate files side by side.
     :param fname: file names to use
     :type fname: list of str
     :param cols: columns to plot
@@ -443,65 +442,7 @@ def scatter_plot(fnames, cols):
     year_set['Year']= year_set['Year'].astype(int)
     # print(year_set)
 
-
-    # Bar Graph:
-    # ax = plt.gca()
-    # combined_locations.plot(kind='bar', x='Zipcode', y='Non-Homeless', color='blue', ax=ax)
-    # combined_locations.plot(kind='bar', x='Zipcode', y='Homeless', color='red', ax=ax)
-
-    ## LmPlot
-    # sns.lmplot('Zipcode', 'Homeless', data=combined_locations, fit_reg=False)
-    # sns.lmplot('Zipcode', 'Non-Homeless', data=combined_locations, fit_reg=False, color='red')
-
-    # # Heatmap
-    # corr = combined_locations.corr()
-    # sns.heatmap(corr, xticklabels=corr.columns, yticklabels=corr.columns,
-    #             cmap=sns.diverging_palette(220, 10, as_cmap=True))
-
-    # Pairpliots
-    # sns.pairplot(combined_locations)
-
-
-    # # bar(h) graph
-    # alternative_method = combined_locations.merge(combined_locations, left_index=True, right_index=True)
-    # combined_dates.plot(kind='bar', legend = False)
-    # f, ax = plt.subplots(figsize=(18, 5))  # set the size that you'd like (width, height)
-
-
-
-    ############################### GRAPHS WE CARE ABOUT!!!##########################################
-    #################################################################################################
-    # combined_locations.plot(kind='bar', legend=True, colormap='Paired', width= .9, yticks=[])
-    # yearly_avg.plot(kind='bar', legend=True, colormap='Paired', width= .9)
-
-    # instances = list(pd.DatetimeIndex(df_complete[df_complete.Category.str.contains('Civil Sidewalks')].Date).year)
-    # valid_years = list(set(pd.DatetimeIndex(df_complete.Date).year))
-    # valid_years.sort()
-    # count_year = np.zeros((1, len(valid_years[0: -2])))
-    # for i in valid_years:
-    #     if i < 2018:
-    #         count_year[0, valid_years.index(i)] = instances.count(i)
-    # plt.show()
-
-    # fig, ax1 = plt.subplots()
-    # ax2 = ax1  # set up the 2nd axis
-    # ax1.bar(combined_years['Year'], combined_years['Homeless Reports'], legend=True, colormap='Paired', width= .9,
-    #         yticks=[], alpha=0.2, color='orange', sharex=True)
-    # ax2.plot(combined_years['Year'], combined_years['Homeless Reports'])  # plot the Revenue on axis #1
-
-    # plt.show()
-
-    # 'Number of Events': loc_set['Report'], 'Homeless Related': loc_set['Homeless Related'], 'Location': loc_list
-
-    # sns.set()
-    # home = combined_locations
-    # sns.barplot(x="Zipcode", y="Non-Homeless Crime",
-    #             data=home);
-    # sns.barplot(x="Zipcode", y="Homeless Report",
-    #             data=home, color='blue');
-    #
-    # plt.show()
-
+    ########################### GRAPHS ######################################################
     ##########################################################################################
     # combined_locations = pd.DataFrame(data={'Homeless Report': count2_location, 'Non-Homeless Crime': count1_location,
     #                                             'Zipcode': zips})
@@ -625,5 +566,5 @@ def scatter_plot(fnames, cols):
 
 
 ######################### Function Caller ########################################
-# scatter_plot(['Complete_Geocoded_Non_homeless_Police_reports.csv',
+# bar_plot(['Complete_Geocoded_Non_homeless_Police_reports.csv',
 #               'Complete_Geocoded_Homeless_Police_Reports.csv'], ['Date', 'Zip'])
