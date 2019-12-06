@@ -19,5 +19,5 @@ These sets were cleaned and sorted using the “Data_cleaner()” function.
 This was done using the “add_ll()” function
 
 	From there we set about creating bar graphs, histograms, and heatmaps that would best convey the data that we found.
-This was done using the "scatter_plot()"(This was originally meant to just create scatter plots, but evolved to create 2 variable bar graphs) to create single and double bar graphs.
+This was done using the "bar_plot()" to create single and double bar graphs.
 We also used the function and the ###############etc
