@@ -29,4 +29,4 @@ This was done using---------------------------------------
 This was done using the "bar_plot()" to create single and double bar graphs.
 
 	Finally we wanted to show the movement of homeless populations over time, and realised that a heatmap would be excellent for this. We then compiled images by year, and by monthly average into gifs to allow the data to be easily understood.
-This was done using ----------------------------------------
+This was done using the "heatmap_drawer()" function to create month wise or year wise heatmap using the human waste data or encampment data in html form. The function needs a filename to extract data and then when you select second parameter 'M' for month wise of 'Y' for year wise, third parameter 'W' for human waste data and 'E' for encampment data. After we got the maps then we used some tool to combine the maps into gifs.
