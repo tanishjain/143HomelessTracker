@@ -15,6 +15,7 @@ def add_ll(fname):
     # from file
     project_data = pd.read_csv(fname)
     assert isinstance(project_data, pd.DataFrame)
+    assert isinstance(fname, str)
 
     search = uszipcode.SearchEngine()
     location_list = list(project_data['Location'])
@@ -566,5 +567,10 @@ def bar_plot(fnames, cols):
 
 
 ######################### Function Caller ########################################
-# bar_plot(['Complete_Geocoded_Non_homeless_Police_reports.csv',
-#               'Complete_Geocoded_Homeless_Police_Reports.csv'], ['Date', 'Zip'])
+# Get the % of all crime that is homeless related
+ bar_plot(['Complete_Geocoded_Non_homeless_Police_reports.csv',
+           'Complete_Geocoded_Homeless_Police_Reports.csv'], ['Date', 'Zip'])
+
+# Get the side by side bar graphs of Homeless reports 
+bar_plot(['Complete_Geocoded_Non_homeless_Police_reports.csv',
+              'Complete_Geocoded_Homeless_Related_Data.csv'], ['Date', 'Zip'])
