@@ -68,7 +68,7 @@ def create_corr_mat(data, annot_sz=30):
     
     return corr
 
-def autolabel(rects):    
+def autolabel(rects, ax):    
     """
     Attach a text label above each bar in rects, displaying its height.
     
@@ -198,4 +198,4 @@ ax.set_yticklabels([])
 ax.set_xticklabels([])
 ax.set_facecolor('black')
 
-autolabel(rects1)
+autolabel(rects1, ax)
